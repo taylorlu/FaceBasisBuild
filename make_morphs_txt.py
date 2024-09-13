@@ -76,6 +76,11 @@ if(__name__=='__main__'):
     emo_morphTargets = np.pad(emo_morphTargets, [[0, 4], [0, 0]], mode='constant', constant_values=0)
     print(eye_morphTargets.shape, emo_morphTargets.shape)
 
+    # # we add 10 frames until warmup the scene
+    eye_morphTargets = np.pad(eye_morphTargets, [[10, 0], [0, 0]], mode='constant', constant_values=0)
+    emo_morphTargets = np.pad(emo_morphTargets, [[10, 0], [0, 0]], mode='constant', constant_values=0)
+    print(eye_morphTargets.shape, emo_morphTargets.shape)
+
     with open('sampleMorTargets.txt', 'w') as mFile:
         for i in range(emo_morphTargets.shape[0]):
             mort = map(lambda x: '{:.3f}'.format(x), list(emo_morphTargets[i]) + list(eye_morphTargets[i]))
